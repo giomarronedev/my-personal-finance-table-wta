@@ -47,7 +47,7 @@ function newOutcomePrompt() {
     </tr>`;
 
   if (isNaN(newOutcomeAmount)) {
-    alert("bldasbfcsdvso");
+    alert("Informe apenas números, por favor!");
   } else {
     document.getElementById("lista-transacoes-conteudo").innerHTML += element;
     returnOutcomeSum();
@@ -75,7 +75,7 @@ function newIncomePrompt() {
     </tr>`;
 
   if (isNaN(newIncomeAmount)) {
-    alert("bldasbfcsdvso");
+    alert("Informe apenas números, por favor!");
   } else {
     document.getElementById("lista-transacoes-conteudo").innerHTML += element;
     returnIncomeSum();
