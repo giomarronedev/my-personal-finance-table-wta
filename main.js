@@ -33,17 +33,31 @@ let outcomeAmount = [];
 let incomeDescription = [];
 let incomeAmount = [];
 
+function listLength() {
+  return document.querySelectorAll(`li`).length;
+}
+
+function removeTransactiontFromList(trId) {
+  document
+    .getElementById("lista-transacoes-conteudo")
+    .removeChild(document.getElementById(trId));
+}
+
 function newOutcomePrompt() {
   let newOutcomeDescription = prompt("Qual a descrição de sua despesa?");
+  
+  let theadId = listLength() + 1;
+  
   let newOutcomeAmount = parseFloat(prompt("Qual o valor de sua despesa?"));
 
-  const element = `<tr>
+  const element = `<tr id="${theadId}">
   <td class="coluna-descricao">${newOutcomeDescription}</td>
   <td class="coluna-categoria">Despesa</td>
   <td class="coluna-valor">${Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   }).format(newOutcomeAmount)}</td>
+  <td class="coluna-categoria"><button onclick="removeTransactiontFromList(${theadId})"><img src="./assets/trash.svg" alt="Deletar item" /></button></td>
     </tr>`;
 
   if (isNaN(newOutcomeAmount)) {
@@ -65,13 +79,17 @@ function newIncomePrompt() {
   let newIncomeDescription = prompt("Qual a descrição de sua receita?");
   let newIncomeAmount = parseFloat(prompt("Qual o valor de sua receita?"));
 
-  const element = `<tr>
+  let theadId = listLength() + 1;
+
+
+  const element = `<tr id="${theadId}>
   <td class="coluna-descricao">${newIncomeDescription}</td>
   <td class="coluna-categoria">Receita</td>
   <td class="coluna-valor">${Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   }).format(newIncomeAmount)}</td>
+  <td class="coluna-lixo"><button onclick="removeTransactiontFromList(${theadId})"><img src="./assets/trash.svg" alt="Deletar item" /></button></td>
     </tr>`;
 
   if (isNaN(newIncomeAmount)) {

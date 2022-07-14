@@ -55,6 +55,16 @@
     text-align: center;
     text-transform: capitalize;
   }
+
+  .lista-transacoes .coluna-lixo {
+    display: flex;
+    align-items: center;
+    top: 50px;
+  }
+
+  .lista-transacoes button {
+    cursor: pointer;
+  }
   
   .lista-transacoes .coluna-valor {
     text-align: right;
@@ -102,6 +112,11 @@
   .botoes .receita {
     background-color: #E02B57;
     color: #fff;
+  }
+
+  td button {
+    background-color: transparent;
+    border: none;
   }
 
   @media only screen and (max-width: 600px) {
