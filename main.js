@@ -38,36 +38,60 @@ function listLength() {
 }
 
 function removeTransactiontFromList(trId) {
+  // console.log(trId)
+
+  // const removeTr = document.getElementById(trId)
+
+  // outcomeAmount.pop(trId)
+
+  // transactionList
+  //   .removeChild(document.getElementById(trId));
+
+  //   const items = document.querySelectorAll(`tr.${theadId}`, function(){
+
+  //   })
+
+  // console.log(outcomeAmount);
+  let theadId = outcomeAmount.length - 1;
+
   document
     .getElementById("lista-transacoes-conteudo")
-    .removeChild(document.getElementById(trId));
+    .removeChild(document.getElementById(theadId));
+
+  outcomeAmount.splice(theadId, 1);
+
+  console.log(theadId, outcomeAmount);
+}
+
+function renderTransactions() {
+  
 }
 
 function newOutcomePrompt() {
   let newOutcomeDescription = prompt("Qual a descrição de sua despesa?");
-  
-  let theadId = listLength() + 1;
-  
-  let newOutcomeAmount = parseFloat(prompt("Qual o valor de sua despesa?"));
 
-  const element = `<tr id="${theadId}">
-  <td class="coluna-descricao">${newOutcomeDescription}</td>
-  <td class="coluna-categoria">Despesa</td>
-  <td class="coluna-valor">${Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(newOutcomeAmount)}</td>
-  <td class="coluna-categoria"><button onclick="removeTransactiontFromList(${theadId})"><img src="./assets/trash.svg" alt="Deletar item" /></button></td>
-    </tr>`;
+  let newOutcomeAmount = parseFloat(prompt("Qual o valor de sua despesa?"));
 
   if (isNaN(newOutcomeAmount)) {
     alert("Informe apenas números, por favor!");
   } else {
-    document.getElementById("lista-transacoes-conteudo").innerHTML += element;
-    returnOutcomeSum();
-
     outcomeDescription.push(newOutcomeDescription);
     outcomeAmount.push(newOutcomeAmount);
+
+    const element = `<tr id=${outcomeAmount.length - 1} class="item">
+    <td class="coluna-descricao">${newOutcomeDescription}</td>
+    <td class="coluna-categoria">Despesa</td>
+    <td class="coluna-valor">${Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(newOutcomeAmount)}</td>
+    <td class="coluna-categoria"><button id="removeTransactionBtn" onclick="removeTransactiontFromList(${
+      outcomeAmount.length - 1
+    })"><img src="./assets/trash.svg" alt="Deletar item" /></button></td>
+    </tr>`;
+
+    document.getElementById("lista-transacoes-conteudo").innerHTML += element;
+    returnOutcomeSum();
   }
   balance();
 
@@ -81,15 +105,14 @@ function newIncomePrompt() {
 
   let theadId = listLength() + 1;
 
-
-  const element = `<tr id="${theadId}>
+  const element = `<tr id="${theadId}">
   <td class="coluna-descricao">${newIncomeDescription}</td>
   <td class="coluna-categoria">Receita</td>
   <td class="coluna-valor">${Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   }).format(newIncomeAmount)}</td>
-  <td class="coluna-lixo"><button onclick="removeTransactiontFromList(${theadId})"><img src="./assets/trash.svg" alt="Deletar item" /></button></td>
+  <td class="coluna-categoria"><button onclick="removeTransactiontFromList(${theadId})"><img src="./assets/trash.svg" alt="Deletar item" /></button></td>
     </tr>`;
 
   if (isNaN(newIncomeAmount)) {
